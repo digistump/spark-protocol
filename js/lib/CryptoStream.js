@@ -69,12 +69,13 @@ CryptoStream.prototype.getCipher = function (callback) {
     cipher.on('readable', function () {
         var chunk = cipher.read();
 
-        if (!ciphertext) {
-            ciphertext = chunk;
-        }
-        else {
-            ciphertext = Buffer.concat([ciphertext, chunk], ciphertext.length + chunk.length);
-        }
+        if(chunk){
+             if (!ciphertext) {
+                 ciphertext = chunk;
+             }
+             else {
+                 ciphertext = Buffer.concat([ciphertext, chunk], ciphertext.length + chunk.length);
+             }
     });
     cipher.on('end', function () {
         //var action = (that.encrypt) ? "encrypting" : "decrypting";
